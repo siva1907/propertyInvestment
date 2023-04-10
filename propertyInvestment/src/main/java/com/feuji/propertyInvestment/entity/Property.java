@@ -3,6 +3,7 @@ package com.feuji.propertyInvestment.entity;
 
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -60,7 +61,7 @@ public class Property {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@Column(name="admin_id")
-	private Set<Admin> admin;
+	private List<Admin> admin;
 	
 	@Column(name="last_modeifedon")
 	private Date modifiedOn;
