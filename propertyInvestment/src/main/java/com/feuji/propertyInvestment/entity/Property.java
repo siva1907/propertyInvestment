@@ -3,12 +3,15 @@ package com.feuji.propertyInvestment.entity;
 
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -55,8 +58,9 @@ public class Property {
 	private String status;
 	
 	
+	@OneToMany(cascade = CascadeType.ALL)
 	@Column(name="admin_id")
-	private Admin admind;
+	private Set<Admin> admin;
 	
 	@Column(name="last_modeifedon")
 	private Date modifiedOn;
