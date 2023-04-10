@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -27,24 +26,22 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Admin {
-	@Id
-	@Column(name="admin_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int adminId;
-	
-	@Column(name="admin_name")
-	private String adminName;
-	
-	@Column(name="admin_password")
-	private String password;
-	
-	@Column(name="status")
-	private String status;
-	
-	@ManyToMany(cascade = CascadeType.ALL,mappedBy = "properties")
-	private List<Property> property;
-	
+    @Id
+    @Column(name="admin_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int adminId;
 
+    @Column(name="admin_name")
+    private String adminName;
+
+    @Column(name="admin_password")
+    private String password;
+
+    @Column(name="status")
+    private String status;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "property_id")
+    private List<Property> properties;
 }
