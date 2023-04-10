@@ -44,7 +44,7 @@ public class CustomerLocation {
 	private String country;
 	
 	@Column(name="pincode")
-	private String pincode;
+	private String pinCode;
 	
 	@Column(name="customer_id")
 	@OneToOne
