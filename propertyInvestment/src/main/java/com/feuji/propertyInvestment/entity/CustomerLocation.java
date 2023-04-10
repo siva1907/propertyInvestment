@@ -1,5 +1,6 @@
 package com.feuji.propertyInvestment.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.NonFinal;
 
 @Entity
 @Table(name="customer_location")
@@ -46,9 +46,8 @@ public class CustomerLocation {
 	@Column(name="pincode")
 	private String pinCode;
 	
-	@Column(name="customer_id")
 	@OneToOne
 	@JoinColumn(name="customer_id")
-	private Customer customerId;
-
+	private Customer customer;
+	
 }
