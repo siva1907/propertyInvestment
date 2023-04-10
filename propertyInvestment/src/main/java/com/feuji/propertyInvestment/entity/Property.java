@@ -3,12 +3,17 @@ package com.feuji.propertyInvestment.entity;
 
 
 import java.util.Date;
+import java.util.List;
 
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -55,8 +60,9 @@ public class Property {
 	private String status;
 	
 	
+	@ManyToMany(cascade = CascadeType.ALL)
 	@Column(name="admin_id")
-	private Admin admind;
+	private List<Admin> admin;
 	
 	@Column(name="last_modeifedon")
 	private Date modifiedOn;
