@@ -12,7 +12,7 @@
 	<artifactId>propertyInvestment</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>propertyInvestment</name>
-	<description>property investment with Spring Boot</description>
+	<description>property investment on Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
