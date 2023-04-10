@@ -1,5 +1,7 @@
 package com.feuji.propertyInvestment.entity;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,7 +42,7 @@ public class Admin {
 	private String status;
 	
 	@ManyToMany(cascade = CascadeType.ALL,mappedBy = "properties")
-	private Property property;
+	private List<Property> property;
 	
 
 }
