@@ -1,4 +1,6 @@
-package com.feuji.propertyInvestment.entity;
+ package com.feuji.propertyInvestment.entity;
+
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -7,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -47,4 +51,7 @@ public class Customer {
     @JoinColumn(name = "customer_location_id",referencedColumnName = "customer_location_id")
     @JsonManagedReference
     private CustomerLocation customerlocation;
+    
+    @OneToMany
+    private List<PropertyOrders> orderIds; 
 }

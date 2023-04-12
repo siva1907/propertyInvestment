@@ -10,7 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -69,7 +71,13 @@ public class Property {
 
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "propertyLocation_id",referencedColumnName = "property_loc_id")
-//	 @JsonManagedReference
+	@JoinTable(name="admin_prop",
+    joinColumns =  @JoinColumn(name = "admin_id"),
+    inverseJoinColumns =  @JoinColumn(name = "property_id"))
+//	@JoinColumn(name = "propertyLocation_id",referencedColumnName = "property_loc_id")
+////	 @JsonManagedReference
 	private PropertyLocation propertyLocation;
+	
+	@OneToMany
+	private List<PropertyOrders> orderIds;
 }

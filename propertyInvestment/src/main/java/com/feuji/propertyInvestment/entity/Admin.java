@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -42,6 +43,9 @@ public class Admin {
     private String status;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "property_id")
+    @JoinTable(name="admin_prop",
+    joinColumns =  @JoinColumn(name = "property_id"),
+    inverseJoinColumns =  @JoinColumn(name = "admin_id"))
+
     private List<Property> properties;
 }
