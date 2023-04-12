@@ -26,6 +26,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PropertyLocation {
+	
+	// comments to test
 	@Id
 	@Column(name="property_loc_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
