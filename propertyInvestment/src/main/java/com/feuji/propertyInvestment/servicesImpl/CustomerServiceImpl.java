@@ -37,4 +37,18 @@ public class CustomerServiceImpl implements CustomerServices {
 		return customerRepositary.findAll();
 	}
 
+	
+
+	@Override
+	public void save(int id) {
+		customerRepositary.save(customerRepositary.findById(id).get());
+		
+	}
+
+	@Override
+	public Customer findById(int id) {
+		
+	return customerRepositary.findById(id).get();
+		
+	}
 }

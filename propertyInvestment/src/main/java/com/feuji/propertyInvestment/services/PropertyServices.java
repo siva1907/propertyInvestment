@@ -12,4 +12,5 @@ public interface PropertyServices {
 	void delete(int id);
 
 	List<Property> getProperties();
+	Property findById(int id);
 }

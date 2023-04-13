@@ -1,11 +1,17 @@
 package com.feuji.propertyInvestment.entity;
 
+/*
+ * an entity representing table properties in DataBase
+ * pojo class having getters and setters,builder,constructor using lombok
+ */
+
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +21,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.OneToOne;
@@ -62,8 +69,12 @@ public class Property {
 	@Column(name = "status")
 	private String status;
 
-	@ManyToMany
-	@JoinColumn(name = "admin_id")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "property_admin", joinColumns = {
+            @JoinColumn(name = "property_id", referencedColumnName = "property_id") }, inverseJoinColumns = {
+                    @JoinColumn(name = "admin_id", referencedColumnName = "admin_id") })
+	@JsonIgnore
+	@JsonManagedReference
 	private List<Admin> admins;
 
 	@Column(name = "last_modeifedon")
@@ -71,13 +82,15 @@ public class Property {
 
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinTable(name="admin_prop",
-    joinColumns =  @JoinColumn(name = "admin_id"),
-    inverseJoinColumns =  @JoinColumn(name = "property_id"))
-//	@JoinColumn(name = "propertyLocation_id",referencedColumnName = "property_loc_id")
-////	 @JsonManagedReference
+	@JoinColumn(name="propertyLocation_id",referencedColumnName = "property_loc_id")
 	private PropertyLocation propertyLocation;
 	
-	@OneToMany
+	
+	@OneToMany(mappedBy = "propertyId")
 	private List<PropertyOrders> orderIds;
+	
+	{
+		this.modifiedOn=new Date();
+		this.startDate=new Date();
+	}
 }
